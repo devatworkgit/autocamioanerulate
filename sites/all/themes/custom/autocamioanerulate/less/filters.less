@@ -1,0 +1,182 @@
+#page-header {
+  margin-bottom: 30px;
+}
+
+#block-views-categorii-filter-block {
+  .views-row {
+    border-left: 1px solid @grey;
+    img {
+      margin: 0 auto;
+    }
+    a {
+      display: block;
+      text-decoration: none;
+      color: @gray;
+      font-size: 15px;
+      min-height: 118px;
+      width: 100%;
+      &:hover, &:focus, &.active {
+        color: @dark-azure;
+      }
+    }
+  }
+  .views-row-last {
+    border-right: 1px solid @grey;
+  }
+}
+
+.well {
+  .views-exposed-form {
+    .form-control {
+      color: @gray;
+      min-height: 45px;
+      border: none;
+      background-color: @light-blue-black;
+      &:focus {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+    .views-exposed-widget {
+      padding: 0;
+      width: 100%;
+      margin-top: 20px;
+      &:first-child {
+        margin-top: 0;
+      }
+      .slider-filter-processed {
+        .clearfix();
+        .form-item {
+          float: left;
+          &:first-child {
+            width: 40%;
+          }
+          &:last-child {
+            width: 60%;
+            label {
+              width: 33.3333333333%;
+              float: left;
+              text-align: center;
+              margin-top: 10px;
+            }
+            input {
+              width: 66.6666666667%;
+            }
+          }
+        }
+      }
+      .bef-slider {
+        margin-top: 10px;
+        background: @black;
+        border: none;
+        height: 10px;
+        .ui-state-default {
+          border-radius: 9px;
+          border: 2px solid @grey;
+          background-color: @white;
+          background-image: url('../images/slider-pin-icon.png');
+          background-repeat: no-repeat;
+          background-position: center;
+          &:hover, &:focus {
+            background-color: @grey;
+            outline: 0;
+          }
+        }
+        .ui-slider-range {
+          background: @azure;
+        }
+      }
+      &#edit-field-prima-inmatriculare-value-wrapper {
+        .views-widget {
+          .clearfix();
+          > div {
+            width: 50%;
+            float: left;
+            .container-inline-date {
+              .date-padding {
+                float: none;
+              }
+            }
+            &:first-child {
+              .container-inline-date {
+                > .form-item {
+                  margin: 0;
+                  padding-right: 5px;
+                }
+              }
+            }
+            &:last-child {
+              .container-inline-date {
+                > .form-item {
+                  margin: 0;
+                  padding-left: 5px;
+                }
+              }
+            }
+            .form-item {
+              width: 100%;
+            }
+          } 
+        }
+      }
+      .panel-default {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid @white-black;
+        > .panel-heading {
+          color: @white;
+          background-color: transparent;
+          border: none;
+          background-image: url('../images/panel-heading-icon.png');
+          background-repeat: no-repeat;
+          background-position: left center;
+          a {
+            padding: 0 0 0 30px;
+            width: auto;
+          }
+        }
+        &.collapsed {
+          > .panel-heading {
+            background-image: url('../images/panel-heading-collapsed-icon.png');
+          }
+        }
+        .panel-body {
+          padding: 15px 0 0;
+          .form-item {
+            margin-top: 20px;
+            &:first-child {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+      &.views-submit-button, &.views-reset-button {
+        button {
+          margin-top: 0;
+          width: 100%;
+        }
+      }
+      &.views-reset-button { 
+        text-align: center;
+        button {
+          display: inline;
+          padding: 0 0 0 20px;
+          background-color: transparent;
+          width: auto;
+          text-transform: inherit;
+          font-weight: normal;
+          color: @azure;
+          background-image: url('../images/reset-icon.png');
+          background-repeat: no-repeat;
+          background-position: left center;
+          &:hover, &:focus {
+            color: @dark-azure;
+          }
+        }
+      }
+    }
+  }
+}
