@@ -65,3 +65,12 @@ function autocamioanerulate_preprocess_page(&$variables) {
     $variables['navbar_classes_array'][] = 'navbar-default';
   }
 }
+
+/**
+ * Implements theme_form_alter().
+ */
+function autocamioanerulate_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'simplenews_block_form_39') {
+    $form['submit']['#value'] = t('❯');
+  }
+}

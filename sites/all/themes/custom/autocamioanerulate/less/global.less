@@ -1,12 +1,30 @@
 h1, .h1 {
+  font-family: @corporateacon;
+  font-size: 50px;
+}
+
+.h1() {
+  font-family: @corporateacon;
   font-size: 50px;
 }
 
 h2, .h2 {
+  font-family: @corporateacon;
+  font-size: 36px;
+}
+
+.h2() {
+  font-family: @corporateacon;
   font-size: 36px;
 }
 
 h3, .h3 {
+  font-family: @corporateacon;
+  font-size: 28px;
+}
+
+.h3() {
+  font-family: @corporateacon;
   font-size: 28px;
 }
 
@@ -68,4 +86,29 @@ h3, .h3 {
   border: none;
   border-radius: 0;
   color: @white;
+}
+
+.block-social-media-links {
+  ul.horizontal {
+    margin-bottom: 0;
+    li {
+      padding: 0;
+      margin: 0 1px;
+      a {
+        padding: 7px;
+        display: block;
+        line-height: 15px;
+        background-color: @white-black;
+        &:hover, &:focus {
+          background-color: @black;
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
 }
