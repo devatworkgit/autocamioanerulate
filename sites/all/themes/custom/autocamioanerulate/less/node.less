@@ -1,0 +1,209 @@
+.field-label-inline {
+  margin-bottom: 15px;
+  .field-label {
+    width: 50%;
+    font-weight: normal;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-left: 1px solid @grey;
+  }
+  .field-items {
+    width: 50%;
+    font-weight: bold;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-left: 1px solid @grey;
+  }
+}
+.field-label-above {
+  .field-label {
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .field-items {
+    line-height: 26px;
+  }
+}
+
+.field-name-body {
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid @grey;
+}
+
+.cloud-zoom-container {
+  .clearfix();
+  padding-bottom: 50px;
+  border-bottom: 1px solid @grey;
+  margin-bottom: 40px;
+  .cloud-zoom-gallery-thumbs {
+    clear: none;
+    float: none !important;
+    a {
+      display: block;
+      float: left;
+      margin-left: 20px;
+      margin-top: 20px;
+      &:nth-child(4n+1) {
+        margin-left: 0;
+      }
+      &:first-child {
+        margin-top: 0;
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.group-contact {
+  background-color: @gray;
+  color: @white;
+  .box-shadow(1px 1px 5px 0px @gray);
+  .top {
+    padding-left: 90px;
+    background-image: url('../images/contact-phone-icon.png');
+    background-repeat: no-repeat;
+    background-position: left 30px center;
+    .field-name-field-telefon {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 15px 30px 0;
+      background-color: @dark-gray;
+    }
+    .field-name-field-locatie-vehicul {
+      font-size: 12px;
+      padding: 0 30px 15px;
+      background-color: @dark-gray;
+      margin: 0;
+      .field-label, .field-items {
+        width: auto;
+        border: none;
+        padding: 0;
+        font-weight: normal;
+      }
+    }
+  }
+  .bottom {
+    padding: 15px 30px;
+    background-color: @azure;
+    .field-name-field-persoana-de-contact, .field-name-field-pozitie {
+      display: inline-block;
+    }
+    .field-name-field-persoana-de-contact {
+      font-weight: bold;
+      padding-right: 10px;
+    }
+    .field-name-field-pozitie {
+      font-style: italic;
+    }
+  }
+}
+
+.group-price {
+  margin: 0 30px;
+  padding: 30px;
+  background-color: @grey;
+  .box-shadow(1px 1px 5px 0px @gray);
+  .field-label-inline {
+    font-size: 15px;
+    .field-label, .field-items {
+      width: auto;
+      border: none;
+      padding: 0;
+      font-weight: normal;
+    }
+    .field-label {
+      font-weight: bold;
+    }
+    .field-items {
+      float: right;
+    }
+  }
+  .field-name-field-pret-autovehicul {
+    .field-items {
+      font-weight: bold;
+      color: @black;
+    }
+  }
+  .field-name-field-20-tva {
+    padding-bottom: 20px;
+    border-bottom: 1px solid @gray;
+  }
+  .field-name-field-pret-total-cu-tva {
+    margin-bottom: 0;
+    .field-label {
+      color: @black;
+      margin-top: 10px;
+    }
+    .field-items {
+      font-size: 26px;
+      font-weight: bold;
+      color: @azure;
+    }
+  }
+}
+
+.field-name-field-marca {
+  .h1();
+  margin: 0 10px 20px 0;
+  color: @azure;
+}
+
+.node-type-autocamion {
+  .field-name-field-marca {
+    float: left;
+  }
+}
+
+#block-sharethis-sharethis-block, #block-print-block, #block-print-pdf-block, #block-text-resize-0 {
+  span, .changer, .print-node {
+    margin-left: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    display: block;
+    height: 30px;
+    width: 30px;
+    float: left;
+    background-color: @grey;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    &:hover, &:focus {
+      background-color: @light-black;
+    }
+    img {
+      display: none;
+    }
+  }
+  .changer {
+    background-color: @gray;
+    &:hover, &:focus {
+      background-color: @light-black;
+    }
+  }
+  .st_email_custom {
+    background-image: url('../images/email-icon.png');
+  }
+  .st_facebook_custom {
+    background-image: url('../images/facebook-icon.png');
+  }
+  .st_twitter_custom {
+    background-image: url('../images/twitter-icon.png');
+  }
+  .print {
+    background-image: url('../images/print-icon.png');
+  }
+  .print-pdf {
+    background-image: url('../images/print-pdf-icon.png');
+  }
+  #text_resize_decrease {
+    background-image: url('../images/text-.png');
+  }
+  #text_resize_reset {
+    background-image: url('../images/text-reset.png');
+  }
+  #text_resize_increase {
+    background-image: url('../images/text+.png');
+  }
+}

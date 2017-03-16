@@ -35,7 +35,7 @@ function cloud_zoom_library() {
       'cloud-zoom' => array(
         'title' => 'Cloud Zoom',
         'website' => 'http://www.professorcloud.com/mainsite/cloud-zoom.htm',
-        'version' => $library->cz_verion,
+        'version' => $library->cz_version,
         'js' => array(
           $library->uri => array('group' => JS_LIBRARY),
           $module_path .'/js/cloud_zoom.js' => array(),
