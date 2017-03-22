@@ -62,43 +62,44 @@ function flag_limit_settings_form($form, &$form_state) {
 }
 
 /**
- * Implementation of hook_flag(). Trigger actions if any are available.
+ * Implementation of hook_flag_flag(). Unflag any over-limit flags as appropriate.
  */
-function flag_limit_flag($action, $flag, $content_id, $account) {
+function flag_limit_flag_flag($flag, $entity_id, $account, $flagging_id) {
   $limited = variable_get('flag_limit_' . $flag->name, FALSE);
-  if ($action == 'flag' && $limited) {
+  if ($limited) {
 
     // Get the flag limits.
     $flag_limit = variable_get('flag_limit_' . $flag->name . '_value', 0);
     $peritem_limit = variable_get('flag_limit_' . $flag->name . '_peritem_value', 0);
+    $sid = flag_get_sid($account->uid);
 
     if ($flag_limit) {
-      // Get all the current flags by that user.
-      $query = "SELECT * FROM {flag_content} WHERE fid = :fid AND uid IN(:uid, 0) ORDER BY timestamp DESC";
-      $result = db_query($query, array(':fid' => $flag->fid, ':uid' => $account->uid));
+      // Get all the current flags by that user or anonymous.
+      $query = "SELECT * FROM {flagging} WHERE fid = :fid AND uid IN (:uid, 0) AND sid IN (:sid, 0) ORDER BY timestamp DESC";
+      $result = db_query($query, array(':fid' => $flag->fid, ':uid' => $account->uid, ':sid' => $sid));
       $i = 1;
-      while ($row = db_fetch_object($result)) {
+      foreach ($result as $row) {
         if ($i++ > $flag_limit) {
-          flag('unflag', $flag->name, $row->content_id, $account);
-          drupal_set_message(t('That item has already been flagged with @flag @num times.',
-                               array('@flag' => $flag->name, '@num' => $peritem_limit)), 'error');
+          flag('unflag', $flag->name, $row->entity_id, $account);
+          $subs = array('@flag' => $flag->name, '@num' => $flag_limit);
+          drupal_set_message(t($message, $subs),'error', FALSE);
         }
       }
     }
     
     if ($peritem_limit) {
-      //$query = "SELECT * FROM {flag_content} WHERE fid = :fid AND content_id = :content_id ORDER BY timestamp ASC";
-      //$result = db_query($query, array(':fid' => $flag->fid, ':content_id' => $content_id));
-      $query = db_select('flag_content', 'f')
-        ->fields('f', array('content_type', 'content_id', 'uid'))
+      //$query = "SELECT * FROM {flag_content} WHERE fid = :fid AND entity_id = :entity_id ORDER BY timestamp ASC";
+      //$result = db_query($query, array(':fid' => $flag->fid, ':entity_id' => $entity_id));
+      $query = db_select('flagging', 'f')
+        ->fields('f', array('entity_type', 'entity_id', 'uid'))
         ->condition('fid', $flag->fid)
-        ->condition('content_type', $flag->content_type)
-        ->condition('content_id', $content_id);
+        ->condition('entity_type', $flag->entity_type)
+        ->condition('entity_id', $entity_id);
       $result = $query->execute();
       $i = 1;
-      while ($row = $result->fetchAssoc()) {
+      foreach ($result as $row) {
         if ($i++ > $peritem_limit) {
-          flag('unflag', $flag->name, $row['content_id'], user_load($row['uid']));
+          flag('unflag', $flag->name, $row->entity_id, user_load($row->uid));
         }
       }
     }
