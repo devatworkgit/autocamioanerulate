@@ -1,3 +1,9 @@
+body.front {
+  .region-content {
+    width: 100%;
+    float: left;
+  }
+}
 .view-autocamioane-rulate {
   .view-content {
     .views-row {
@@ -19,6 +25,8 @@
         padding-top: 15px;
         border-top: 1px solid @grey;
         .clearfix();
+        float: left;
+        width: 100%;
         .price {
           font-size: 20px;
           float: left;
@@ -26,6 +34,55 @@
         }
         .btn {
           float: right;
+        }
+      }
+      .views-field {
+        .clearfix();
+        margin-bottom: 10px;
+        .views-label {
+          font-weight: bold;
+        }
+      }
+      .views-field-field-numar-autovehicul-rulat {
+        margin-bottom: 15px;
+      }
+    }
+    .views-field-ops {
+      display: block;
+      float: left;
+      margin-top: 4px;
+      a {
+        display: inline-block;
+        line-height: 45px;
+        color: transparent;
+        height: 20px;
+        width: 20px;
+        background-image: url('../images/disabled-star-icon.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        &:hover, &.unflag-action {
+          background-image: url('../images/enabled-star-icon.png');
+        }
+      }
+    }
+    .views-field-ops-1 {
+      display: block;
+      float: right;
+      .flag-wrapper {
+        a {
+          padding: 5px 10px 5px 25px;
+          text-decoration: none;
+          color: @white;
+          background-color: @light-black;
+          background-image: url('../images/panel-heading-collapsed-icon.png');
+          background-repeat: no-repeat;
+          background-position: 1px center;
+          margin-bottom: -14px;
+          display: block;
+          &.unflag-action {
+            background-image: url('../images/panel-heading-icon.png');
+            background-color: @black;
+          }
         }
       }
     }

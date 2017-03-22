@@ -1,3 +1,12 @@
+.main-container {
+  margin-bottom: 50px;
+}
+#block-block-3 {
+  img {
+    width: 100%;
+  }
+}
+
 .field-label-inline {
   margin-bottom: 15px;
   .field-label {
@@ -15,6 +24,7 @@
     border-left: 1px solid @grey;
   }
 }
+
 .field-label-above {
   .field-label {
     text-transform: uppercase;
@@ -151,8 +161,47 @@
 }
 
 .node-type-autocamion {
-  .field-name-field-marca {
-    float: left;
+  .field-name-field-marca, .page-header, .flag-outer-like, .flag-outer-compara {
+    display: inline-block;
+    margin: 0 10px 20px 0;
+  }
+}
+
+.flag-outer-like {
+  .flag-wrapper {
+    a {
+      display: inline-block;
+      line-height: 45px;
+      color: transparent;
+      height: 20px;
+      width: 20px;
+      background-image: url('../images/disabled-star-icon.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      &:hover, &.unflag-action {
+        background-image: url('../images/enabled-star-icon.png');
+      }
+    }
+  }
+}
+
+.flag-outer-compara {
+  .flag-wrapper {
+    a {
+      padding: 5px 10px 5px 25px;
+      text-decoration: none;
+      color: @white;
+      background-color: @light-black;
+      background-image: url('../images/panel-heading-collapsed-icon.png');
+      background-repeat: no-repeat;
+      background-position: 1px center;
+      margin-bottom: -14px;
+      display: block;
+      &.unflag-action {
+        background-image: url('../images/panel-heading-icon.png');
+        background-color: @black;
+      }
+    }
   }
 }
 

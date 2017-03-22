@@ -57,7 +57,7 @@ h3, .h3 {
   }
 }
 
-.btn-default, .btn-info {
+.btn-default, .btn-info{
   border: none;
   color: @white;
   background-color: @azure;
@@ -73,10 +73,44 @@ h3, .h3 {
   &.active {
     background-color: @dark-azure;
     color: @white;
+    box-shadow: none;
   }
 }
 
-
+.btn-favorite {
+  background-color: transparent;
+  color: @gray;
+  padding: 2px 0 0 30px;
+  background-image: url('../images/disabled-star-icon.png');
+  background-repeat: no-repeat;
+  background-position: left 5px center;
+  &:hover, 
+  &:focus, 
+  &:active, 
+  &:active:hover,
+  &:active:focus,
+  &.focus,
+  &.active {
+    background-color: transparent;
+    color: @azure;
+    background-image: url('../images/enabled-star-icon.png');
+    box-shadow: none;
+  }
+}
+.btn-compara {
+  padding: 2px 0 0;
+  color: @gray;
+  &:hover, 
+  &:focus, 
+  &:active, 
+  &:active:hover,
+  &:active:focus,
+  &.focus,
+  &.active {
+    color: @black;
+    box-shadow: none;
+  }
+}
 
 .btn-mega {
   padding: 14px 30px;
@@ -87,6 +121,16 @@ h3, .h3 {
   border: none;
   border-radius: 0;
   color: @white;
+}
+
+.autocamioane-btns {
+  float: right;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  .favorite, .compara {
+    float: right;
+    margin-left: 15px;
+  }
 }
 
 .block-social-media-links {
@@ -114,7 +158,7 @@ h3, .h3 {
   }
 }
 
-.row {
+.block-webform {
   .form-actions {
     .clearfix();
     padding: 0 15px;

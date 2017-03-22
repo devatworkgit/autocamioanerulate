@@ -100,7 +100,9 @@
       <?php print render($content['field_images']); ?>
     </div>
     <div class="col-md-50">
-      <?php 
+      <?php
+        hide($content['flag_like']);
+        hide($content['flag_compara']);
         hide($content['field_marca']);
         hide($content['body']);
         hide($content['field_pret_autovehicul']);

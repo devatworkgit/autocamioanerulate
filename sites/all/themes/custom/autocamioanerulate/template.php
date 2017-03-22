@@ -69,6 +69,22 @@ function autocamioanerulate_preprocess_page(&$variables) {
   if (isset($variables['node']) && $variables['node']->type == 'autocamion') {
     $node = node_view($variables['node']);
     $variables['title_prefix'] = $node['field_marca'];
+    $variables['title_suffix'][] = $node['flag_like'];
+    $variables['title_suffix'][] = $node['flag_compara'];
+  }
+  
+  if (arg(0) != NULL || arg(0) == 'autocamioane') {
+    $favorite = "";
+    $compara = "";
+    if (arg(1) == 'favorite') { 
+      $favorite = "active";
+    } elseif (arg(1) == 'comparare') {
+      $compara = "active";
+    }
+    $variables['accessibility'] = '<div class="autocamioane-btns">
+      <div class="favorite"><a class="btn btn-favorite ' . $favorite . '" href="/autocamioane/favorite">Favorite</a></div>
+      <div class="compara"><a class="btn btn-compara ' . $compara . '" href="/autocamioane/comparare">Compară</a></div>
+    </div>';
   }
   
   if(isset($variables['node'])) {
