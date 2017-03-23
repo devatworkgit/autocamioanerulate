@@ -73,7 +73,7 @@ function autocamioanerulate_preprocess_page(&$variables) {
     $variables['title_suffix'][] = $node['flag_compara'];
   }
   
-  if (arg(0) != NULL || arg(0) == 'autocamioane') {
+  if (drupal_is_front_page() || arg(0) == 'autocamioane') {
     $favorite = "";
     $compara = "";
     if (arg(1) == 'favorite') { 
