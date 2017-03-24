@@ -6,8 +6,36 @@ body.front {
 }
 .view-autocamioane-rulate {
   .view-content {
+    width: 100%;
+    float: left;
     .views-row {
       padding-bottom: 30px;
+      .bandou {
+        position: relative;
+        overflow: hidden;
+        .taguri-wrapper {
+          position: absolute;
+          top: 0;
+          color: @white;
+          font-weight: bold;
+          text-transform: uppercase;
+          background-color: @azure;
+          width: 50%;
+          height: 50%;
+          margin-top: -13%;
+          margin-left: -21%;
+          .rotate(-45deg);
+          .taguri {
+            position: absolute;
+            text-align: center;
+            width: 50%;
+            bottom: 5%;
+            left: 50%;
+            margin-left: -25%;
+            .translate3d( 0, 0, 0);
+          }
+        }
+      }
       .marca {
         margin-bottom: 5px;
       }
@@ -86,5 +114,71 @@ body.front {
         }
       }
     }
+  }
+}
+
+.view-noutati {
+  .view-content {
+    .clearfix();
+  }
+  .views-row {
+    .clearfix();
+    margin-bottom: 30px;
+    header {
+      .clearfix();
+      h2 {
+        float: left;
+        margin-top: 0;
+        a {
+          color: @azure;
+          text-decoration: none;
+          &:hover, &:focus {
+            color: @dark-azure;
+          }
+        }
+      }
+      .submitted {
+        float: right;
+        margin-top: 15px;
+      }
+    }
+    .field-name-body {
+      padding-bottom: 15px;
+      margin-bottom: 0;
+      border: none;
+    }
+    .field-name-field-tags {
+      padding-top: 15px;
+      margin-bottom: 15px;
+      float: right;
+      .field-item {
+        margin-right: 0;
+        margin-left: 5px;
+      }
+    }
+    .links {
+      padding-top: 15px;
+      border-top: 1px solid @grey;
+      margin-bottom: 15px;
+      .node-readmore {
+        a {
+          font-size: 15px;
+          padding: 2px 0 0;
+          color: @gray;
+          text-transform: uppercase;
+          font-weight: 700;
+          border-radius: 0;
+          &:hover, &:focus {
+            outline: none;
+            box-shadow: none;
+            text-decoration: none;
+            color: @black;
+          }
+        }
+      }
+    }
+  }
+  .views-row-even {
+    margin-left: 25%;
   }
 }

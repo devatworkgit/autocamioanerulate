@@ -34,6 +34,7 @@ stylesheets[all][] = less/style.less
 ;; Scripts
 ;;;;;;;;;;;;;;;;;;;;;
 
+scripts[] = 'js/flag_refresh_view.js'
 scripts[] = 'bootstrap/js/affix.js'
 scripts[] = 'bootstrap/js/alert.js'
 scripts[] = 'bootstrap/js/button.js'

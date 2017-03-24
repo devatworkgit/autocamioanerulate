@@ -33,6 +33,11 @@ h3, .h3 {
   border: none;
 }
 
+.messages {
+  float: left;
+  width: 100%;
+}
+
 .marca {
   font-family: @corporateacon;
   color: @azure;
@@ -168,5 +173,45 @@ h3, .h3 {
   }
   > .block-title {
     padding: 0 15px;
+  }
+  div[id^="webform-ajax-wrapper"] {
+    > div {
+      padding: 0 15px;
+    }
+  }
+}
+
+.pagination {
+  margin: 0;
+  padding-top: 40px;
+  > li {
+    > a {
+      border: none; 
+      color: @black;
+      &:hover, &:focus {
+        background-color: transparent;
+        color: @azure;
+      }
+    }
+    > span {
+      border-radius: 0;
+    }
+    &:first-child > span, &:last-child > span {
+      border-radius: 0;
+    }
+  }
+  > .disabled {
+    > span {
+      border: none;
+    }
+  }
+  > .active { 
+    > span {
+      background-color: @azure;
+      border: none;
+      &:hover, &:focus {
+        background-color: @azure;
+      }
+    }
   }
 }
