@@ -315,6 +315,16 @@ function cloud_zoom_settings_info() {
        'add_quote' => TRUE,
      ),
    );
+   if (module_exists('colorbox')) {
+     $settings['colorbox'] = array(
+       'title' => t('Open details in Colorbox'),
+       'id' => FALSE,
+       'description' => t('Show the image in colorbox on click (requires the colorbox.module)'),
+       'default_value' => FALSE,
+       'form_type' => 'checkbox',
+       'fieldset' => 'zoom_style_fieldset',
+     );
+   }
 
   return $settings;
 }
@@ -542,6 +552,10 @@ function theme_cloud_zoom_image($variables) {
   $zoomed = $variables['zoom_style'] ? image_style_url($variables['zoom_style'], $item['uri']) : file_create_url($item['uri']);
   $rel = cloud_zoom_get_rel_string($variables);
 
+  if (!empty($variables['colorbox']) && module_exists('colorbox')) {
+    $attributes['class'][] = 'colorbox';
+    $attributes['title'] = $item['title'];
+  }
 
   // Return the preview image as a link to the larger image with a cloud-zoom CSS class
   return l($slide, $zoomed, array('html' => TRUE, 'attributes' => array('class' => 'cloud-zoom', 'rel' => $rel)));
@@ -563,6 +577,13 @@ function theme_cloud_zoom_image_gallery($variables) {
   $main_item = '';
 
   $id = drupal_html_id('cloud-zoom');
+  
+  $classes = array('cloud-zoom');
+
+  // Use colorbox?
+  if (!empty($variables['colorbox']) && module_exists('colorbox')) {
+    $classes[] = 'colorbox';
+  }
 
   foreach ($items as $delta => $item) {
     // Build images.
@@ -577,7 +598,7 @@ function theme_cloud_zoom_image_gallery($variables) {
       $options = array(
         'html' => TRUE,
         'attributes' => array(
-          'class' => 'cloud-zoom',
+          'class' => $classes,
           'id' => $id,
           'rel' =>  $options_rel ,
         ),
