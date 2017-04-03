@@ -16,13 +16,13 @@
 function autocamioanerulate_preprocess_page(&$variables) {
   // Add information about the number of sidebars.
   if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-sm-72"';
+    $variables['content_column_class'] = ' class="col-sm-40 col-md-60 col-lg-60 col-mg-72"';
   }
   elseif (!empty($variables['page']['sidebar_first']) || !empty($variables['page']['sidebar_second'])) {
-    $variables['content_column_class'] = ' class="col-sm-96"';
+    $variables['content_column_class'] = ' class="col-sm-80 col-md-90 col-lg-90 col-mg-96"';
   }
   else {
-    $variables['content_column_class'] = ' class="col-sm-120"';
+    $variables['content_column_class'] = ' class="col-xs-120"';
   }
 
   if (bootstrap_setting('fluid_container') == 1) {

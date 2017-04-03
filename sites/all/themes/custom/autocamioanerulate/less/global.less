@@ -1,31 +1,85 @@
 h1, .h1 {
   font-family: @corporateacon;
-  font-size: 50px;
+  font-size: 38px;
+  @media (min-width: @screen-sm-min) {
+    font-size: 42px;
+  }
+  @media (min-width: @screen-md-min) {
+    font-size: 46px;
+  }
+  @media (min-width: @screen-lg-min) {
+    font-size: 50px;
+  }
 }
 
 .h1() {
   font-family: @corporateacon;
-  font-size: 50px;
+  font-size: 38px;
+  @media (min-width: @screen-sm-min) {
+    font-size: 42px;
+  }
+  @media (min-width: @screen-md-min) {
+    font-size: 46px;
+  }
+  @media (min-width: @screen-lg-min) {
+    font-size: 50px;
+  }
 }
 
 h2, .h2 {
   font-family: @corporateacon;
-  font-size: 36px;
+  font-size: 27px;
+  @media (min-width: @screen-sm-min) {
+    font-size: 30px;
+  }
+  @media (min-width: @screen-md-min) {
+    font-size: 33px;
+  }
+  @media (min-width: @screen-lg-min) {
+    font-size: 36px;
+  }
 }
 
 .h2() {
   font-family: @corporateacon;
-  font-size: 36px;
+  font-size: 27px;
+  @media (min-width: @screen-sm-min) {
+    font-size: 30px;
+  }
+  @media (min-width: @screen-md-min) {
+    font-size: 33px;
+  }
+  @media (min-width: @screen-lg-min) {
+    font-size: 36px;
+  }
 }
 
 h3, .h3 {
   font-family: @corporateacon;
-  font-size: 28px;
+  font-size: 22px;
+  @media (min-width: @screen-sm-min) {
+    font-size: 24px;
+  }
+  @media (min-width: @screen-md-min) {
+    font-size: 26px;
+  }
+  @media (min-width: @screen-lg-min) {
+    font-size: 28px;
+  }
 }
 
 .h3() {
   font-family: @corporateacon;
-  font-size: 28px;
+  font-size: 22px;
+  @media (min-width: @screen-sm-min) {
+    font-size: 24px;
+  }
+  @media (min-width: @screen-md-min) {
+    font-size: 26px;
+  }
+  @media (min-width: @screen-lg-min) {
+    font-size: 28px;
+  }
 }
 
 .page-header {
@@ -48,11 +102,14 @@ h3, .h3 {
 }
 
 .btn {
-  font-size: 15px;
+  font-size: 14px;
   padding: 9px 30px;
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 0;
+  @media (min-width: @screen-mg-min) {
+    font-size: 15px;
+  }
   a {
     text-decoration: none;
   }
@@ -118,7 +175,16 @@ h3, .h3 {
 }
 
 .btn-mega {
-  padding: 14px 30px;
+  padding: 5px 10px;
+  @media (min-width: @screen-sm-min) {
+    padding: 7px 15px;
+  }
+  @media (min-width: @screen-mg-min) {
+    padding: 10px 20px;
+  }
+  @media (min-width: @screen-lg-min) {
+    padding: 14px 30px;
+  }
 }
 
 .well {

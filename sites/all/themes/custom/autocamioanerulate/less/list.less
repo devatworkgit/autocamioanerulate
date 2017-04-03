@@ -33,6 +33,12 @@ body.front {
             left: 50%;
             margin-left: -25%;
             .translate3d( 0, 0, 0);
+            @media (min-width: @screen-sm-min) {
+              font-size: 12px
+            }
+            @media (min-width: @screen-lg-min) {
+              font-size: 14px
+            }
           }
         }
       }
@@ -40,8 +46,14 @@ body.front {
         margin-bottom: 5px;
       }
       .title {
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 10px;
+        @media (min-width: @screen-sm-min) {
+          font-size: 15px
+        }
+        @media (min-width: @screen-lg-min) {
+          font-size: 16px
+        }
       }
       .categoria {
         font-size: 15px;
@@ -56,9 +68,15 @@ body.front {
         float: left;
         width: 100%;
         .price {
-          font-size: 20px;
+          font-size: 18px;
           float: left;
           margin-top: 8px;
+          @media (min-width: @screen-sm-min) {
+            font-size: 19px
+          }
+          @media (min-width: @screen-lg-min) {
+            font-size: 20px
+          }
         }
         .btn {
           float: right;
@@ -139,7 +157,13 @@ body.front {
       }
       .submitted {
         float: right;
-        margin-top: 15px;
+        margin-top: 5px;
+        @media (min-width: @screen-sm-min) {
+          margin-top: 10px;
+        }
+        @media (min-width: @screen-md-min) {
+          margin-top: 15px;
+        }
       }
     }
     .field-name-body {
@@ -179,6 +203,11 @@ body.front {
     }
   }
   .views-row-even {
-    margin-left: 25%;
+    @media (min-width: @screen-sm-min) {
+      margin-left: 16.666666666666%;
+    }
+    @media (min-width: @screen-md-min) {
+      margin-left: 25%;
+    }
   }
 }

@@ -2,6 +2,10 @@
   background-color: @black;
   border: none;
   border-radius: 0;
+  .navbar-toggle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
   .navbar-nav {
     > li {
       > a {
@@ -16,6 +20,10 @@
         background-color: transparent;
         color: @azure;
         @media (min-width: @screen-sm-min) {
+          padding: 30px 0 28px;
+          border-bottom: 2px solid @azure;
+        }
+        @media (min-width: @screen-md-min) {
           padding: 45px 10px 43px;
           border-bottom: 2px solid @azure;
         }
@@ -28,13 +36,21 @@
   }
   #top-navbar {
     background-color: @light-black;
+    display: none;
+    @media (min-width: @screen-sm-min) {
+      display: block;
+    }
     .block {
       float: right;
-      margin-top: 15px;
-      margin-bottom: 15px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       padding-left: 20px;
       padding-right: 20px;
       border-left: 1px solid @white-black;
+      @media (min-width: @screen-md-min) {
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
       &:first-child {
         padding-right: 0;
       }
@@ -60,8 +76,12 @@
       }
     }
     #block-social-media-links-social-media-links {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 0;
+      @media (min-width: @screen-md-min) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
       ul.horizontal {
         margin-bottom: 0;
         li {
@@ -89,18 +109,30 @@
 }
 
 .navbar-btn {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  @media (min-width: @screen-md-min) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }
 
 .navbar-nav {
   @media (min-width: @screen-sm-min) {
     float: right;
-    margin-right: -15px;
+    font-size: 14px;
+  }
+  @media (min-width: @screen-md-min) {
     font-size: 16px;
   }
   > li {
     @media (min-width: @screen-sm-min) {
+      margin: 0 10px;
+    }
+    @media (min-width: @screen-md-min) {
+      margin: 0 15px;
+    }
+    @media (min-width: @screen-lg-min) {
       margin: 0 30px;
     }
     &:last-child {
@@ -111,6 +143,9 @@
     }
     > a {
       @media (min-width: @screen-sm-min) {
+        padding: 30px 0;
+      }
+      @media (min-width: @screen-md-min) {
         padding: 45px 10px;
       }
     }

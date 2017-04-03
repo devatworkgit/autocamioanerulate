@@ -20,8 +20,36 @@
       }
     }
   }
+  .views-row-first {
+    border-left: none;
+    @media (min-width: @screen-lg-min) {
+      border-left: 1px solid @grey;
+    }
+  }
   .views-row-last {
-    border-right: 1px solid @grey;
+    @media (min-width: @screen-lg-min) {
+      border-right: 1px solid @grey;
+    }
+  }
+  .views-row-3 {
+    border-left: none;
+    @media (min-width: @screen-sm-min) {
+      border-left: 1px solid @grey;
+    }
+  }
+  .views-row-4 {
+    @media (min-width: @screen-sm-min) {
+      border-left: none;
+    }
+    @media (min-width: @screen-md-min) {
+      border-left: 1px solid @grey;
+    }
+  }
+   .views-row-5 {
+    border-left: none;
+    @media (min-width: @screen-sm-min) {
+      border-left: 1px solid @grey;
+    }
   }
 }
 

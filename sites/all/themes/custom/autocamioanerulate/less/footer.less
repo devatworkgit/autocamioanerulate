@@ -24,16 +24,23 @@
     border-bottom: 1px solid @light-black;
   }
   .bottom-footer {
-    padding-top: 30px;
+    padding-top: 20px;
     font-size: 13px;
   }
   .block-simplenews {
     .block-title {
-      float: left;
+      @media (min-width: @screen-sm-min) {
+        float: left;
+      }
     }
     .simplenews-subscribe {
-      width: 50%;
-      float: right;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      @media (min-width: @screen-sm-min) {
+        width: 50%;
+        float: right;
+        margin: 0;
+      }
       .form-group {
         margin-bottom: 0;
       }
@@ -66,12 +73,33 @@
       clear: left;
     }
   }
+  #block-block-2 {
+    margin-top: 10px;
+  }
   .block-menu {
+    
     .menu {
       float: right;
+      text-align: right;
+      width: 100%;
+      @media (min-width: @screen-lg-min) {
+        width: initial;
+      }
       li {
-        display: inline-block;
         border-left: 1px solid @light-black;
+        margin-top: 10px;
+        width: 50%;
+        display: block;
+        float: left;
+        text-align: center;
+        @media (min-width: @screen-sm-min) {
+          width: 20%;
+        }
+        @media (min-width: @screen-lg-min) {
+          display: inline-block;
+          width: auto;
+          float: none;
+        }
         a {
           padding: 0;
           color: @gray;
@@ -83,14 +111,30 @@
           }
         }
         &:first-child {
-          border-left: none;
           a {
-            margin-left: 0;
+            @media (min-width: @screen-lg-min) {
+              margin-left: 0;
+            }
           }
         }
         &:last-child {
           a {
-            margin-right: 0;
+            @media (min-width: @screen-lg-min) {
+              margin-right: 0;
+            }
+          }
+        }
+        &:nth-child(5n-4) {
+          @media (min-width: @screen-sm-min) {
+            border-left: none;
+          }
+          @media (min-width: @screen-lg-min) {
+            border-left: 1px solid @light-black;
+          }
+        }
+        &:nth-child(2n-1) {
+          @media (max-width: @screen-xs-max) {
+            border-left: none;
           }
         }
       }

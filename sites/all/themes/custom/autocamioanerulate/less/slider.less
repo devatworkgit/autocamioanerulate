@@ -3,6 +3,10 @@
 }
 
 #block-views-slider-block {
+  @media (max-width: @screen-xs-max) {
+    background-color: @light-black;
+    color: @white;
+  }
   .owl-carousel {
     .image {
       img {
@@ -11,18 +15,53 @@
     }
     .content {
       width: 100%;
-      position: absolute;
-      bottom: 30%;
+      padding-bottom: 35px;
+      @media (min-width: @screen-sm-min) {
+        position: absolute;
+        padding-bottom: 0;
+        bottom: 15%;
+      }
+      @media (min-width: @screen-md-min) {
+        bottom: 25%;
+      }
+      @media (min-width: @screen-lg-min) {
+        bottom: 30%;
+      }
       .wrapper {
-        width: 50%;
+        @media (min-width: @screen-sm-min) {
+          width: 60%;
+        }
+        @media (min-width: @screen-mg-min) {
+          width: 50%;
+        }
         .title {
           font-family: @corporateacon;
           margin-top: 0;
-          margin-bottom: 30px;
+          margin-bottom: 10px;
+          @media (min-width: @screen-sm-min) {
+            line-height: 32px;
+          }
+          @media (min-width: @screen-md-min) {
+            margin-bottom: 15px;
+            line-height: initial;
+          }
+          @media (min-width: @screen-mg-min) {
+            margin-bottom: 30px;
+          }
         }
         .body {
-          font-size: 16px;
-          margin-bottom: 30px;
+          font-size: 14px;
+          margin-bottom: 10px;
+          @media (min-width: @screen-sm-min) {
+            font-size: 15px;
+          }
+          @media (min-width: @screen-md-min) {
+            margin-bottom: 15px;
+            font-size: 16px;
+          }
+          @media (min-width: @screen-mg-min) {
+            margin-bottom: 30px;
+          }
         }
       }
     }
@@ -35,45 +74,64 @@
       position: absolute;
       top: 50%;
       margin: 0;
-      font-size: 100px;
-      line-height: 80px;
-      margin-top: -40px;
+      font-size: 40px;
+      line-height: 35px;
+      margin-top: -17.5px;
       border-radius: 0;
       padding: 0;
       background-color: transparent;
       opacity: 0.5;
+      @media (min-width: @screen-sm-min) {
+        font-size: 60px;
+        line-height: 50px;
+        margin-top: -25px;
+      }
+      @media (min-width: @screen-mg-min) {
+        font-size: 100px;
+        line-height: 80px;
+        margin-top: -40px;
+      }
       &:hover {
         background-color: transparent;
         opacity: 1;
       }
     }
     .owl-next {
-      right: 30px;
+      right: 10px;
+      @media (min-width: @screen-sm-min) {
+        right: 15px;
+      }
     }
     .owl-prev {
-      left: 30px;
+      left: 10px;
+      @media (min-width: @screen-sm-min) {
+        left: 15px;
+      }
     }
   }
   .owl-dots {
     position: absolute;
-    bottom: 15%;
+    bottom: 15px;
     text-align: left;
-    left: 50%;
     margin-bottom: -15px;
   
     .container-fixed();
 
     @media (min-width: @screen-sm-min) {
+      left: 50%;
       width: @container-sm;
       margin-left: -(@container-sm/2);
+      bottom: 5%;
     }
     @media (min-width: @screen-md-min) {
       width: @container-md;
       margin-left: -(@container-md/2);
+      bottom: 10%;
     }
     @media (min-width: @screen-lg-min) {
       width: @container-lg;
       margin-left: -(@container-lg/2);
+      bottom: 15%;
     }
     @media (min-width: @screen-mg-min) {
       width: @container-mg;

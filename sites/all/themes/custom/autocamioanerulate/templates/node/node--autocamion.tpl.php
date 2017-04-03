@@ -96,10 +96,10 @@
   </header>
   <?php endif; ?>
   <div class="row">
-    <div class="col-md-70">
+    <div class="col-xs-120 col-md-82 col-lg-84 col-mg-70">
       <?php print render($content['field_images']); ?>
     </div>
-    <div class="col-md-50">
+    <div class="col-xs-120 col-md-38 col-lg-36 col-mg-50">
       <?php
         hide($content['flag_like']);
         hide($content['flag_compara']);
@@ -117,11 +117,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-70">
+    <div class="col-sm-xs col-md-70">
       <?php print render($content['body']); ?>
       <?php print render($form); ?>
     </div>
-    <div class="col-md-offset-5 col-md-40">
+    <div class="col-xs-120 col-sm-offset-20 col-sm-80 col-md-offset-0 col-md-50 col-lg-offset-2 col-lg-46 col-mg-offset-5 col-mg-40">
       <div class="group-contact">
         <div class="top">
           <?php

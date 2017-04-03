@@ -136,7 +136,7 @@
   <div class="row">
 
     <?php if (!empty($page['sidebar_first'])): ?>
-      <aside class="col-sm-24" role="complementary">
+      <aside class="col-sm-40 col-md-30 col-lg-30 col-mg-24" role="complementary">
         <?php print render($page['sidebar_first']); ?>
       </aside>  <!-- /#sidebar-first -->
     <?php endif; ?>
