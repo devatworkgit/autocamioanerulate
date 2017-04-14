@@ -4,10 +4,136 @@ body.front {
     float: left;
   }
 }
+.page-autocamioane-comparare {
+  @media (max-width: @screen-xs-max) {
+    .main-container { 
+      max-width: inherit;
+    }
+    #block-views-categorii-filter-block {
+      max-width: 292.5px;
+      margin: 0 auto;
+    }
+  }
+}
 .view-autocamioane-rulate {
   .view-content {
     width: 100%;
     float: left;
+    .views-table { 
+      width: 100%;
+      overflow-y: auto;
+      display: block;
+      tbody {
+        width: 1400px;
+        display: block;
+        > tr {
+          width: 100%;
+          display: block;
+          > th, > td {
+            width: 20%;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-top: 1px solid @grey;
+            display: block;
+            float: left;
+            max-width: 280px;
+            min-height: 31px;
+          }
+          .views-field-ops-1 {
+            .flag-like {
+              float: left;
+              a {
+                display: inline-block;
+                line-height: 45px;
+                color: transparent;
+                height: 20px;
+                width: 20px;
+                background-image: url('../images/disabled-star-icon.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                &:hover, &.unflag-action {
+                  background-image: url('../images/enabled-star-icon.png');
+                }
+              }
+            }
+            .flag-compara {
+              float: right;
+              a {
+                padding: 5px 10px 5px 25px;
+                text-decoration: none;
+                color: @white;
+                background-color: @light-black;
+                background-image: url('../images/panel-heading-collapsed-icon.png');
+                background-repeat: no-repeat;
+                background-position: 1px center;
+                margin-bottom: -14px;
+                display: block;
+                &.unflag-action {
+                  background-image: url('../images/panel-heading-icon.png');
+                  background-color: @black;
+                }
+              }
+            }
+          }
+          .categoria {
+            padding-top: 0; 
+            padding-bottom: 0;
+            font-size: 15px;
+            color: @gray;
+          }
+          .views-field-field-images {
+            padding-bottom: 0;
+            padding-top: 0;
+            border: 0;
+          }
+        }
+        .bottom-wrapper {
+          > th, > td {
+            border: none;
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+          .price {
+            font-size: 18px;
+            float: left;
+            margin-top: 8px;
+            @media (min-width: @screen-sm-min) {
+              font-size: 19px
+            }
+            @media (min-width: @screen-lg-min) {
+              font-size: 20px
+            }
+          }
+          .btn {
+            float: right;
+          }
+        }
+        .marca {
+          .h3();
+          color: @azure;
+          > th, > td {
+            padding-bottom: 5px;
+            border: none;
+            padding-top: 0;
+          }
+        }
+        .title {
+          font-size: 14px;
+          > th, > td {
+            border: none;
+            padding-top: 0;
+            @media (min-width: @screen-sm-min) {
+              font-size: 15px
+            }
+            @media (min-width: @screen-lg-min) {
+              font-size: 16px
+            }
+          }
+        }
+      }
+    }
     .views-row {
       padding-bottom: 30px;
       .bandou {
@@ -92,42 +218,42 @@ body.front {
       .views-field-field-numar-autovehicul-rulat {
         margin-bottom: 15px;
       }
-    }
-    .views-field-ops {
-      display: block;
-      float: left;
-      margin-top: 4px;
-      a {
-        display: inline-block;
-        line-height: 45px;
-        color: transparent;
-        height: 20px;
-        width: 20px;
-        background-image: url('../images/disabled-star-icon.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        &:hover, &.unflag-action {
-          background-image: url('../images/enabled-star-icon.png');
+      .views-field-ops {
+        display: block;
+        float: left;
+        margin-top: 4px;
+        a {
+          display: inline-block;
+          line-height: 45px;
+          color: transparent;
+          height: 20px;
+          width: 20px;
+          background-image: url('../images/disabled-star-icon.png');
+          background-repeat: no-repeat;
+          background-position: center;
+          &:hover, &.unflag-action {
+            background-image: url('../images/enabled-star-icon.png');
+          }
         }
       }
-    }
-    .views-field-ops-1 {
-      display: block;
-      float: right;
-      .flag-wrapper {
-        a {
-          padding: 5px 10px 5px 25px;
-          text-decoration: none;
-          color: @white;
-          background-color: @light-black;
-          background-image: url('../images/panel-heading-collapsed-icon.png');
-          background-repeat: no-repeat;
-          background-position: 1px center;
-          margin-bottom: -14px;
-          display: block;
-          &.unflag-action {
-            background-image: url('../images/panel-heading-icon.png');
-            background-color: @black;
+      .views-field-ops-1 {
+        display: block;
+        float: right;
+        .flag-wrapper {
+          a {
+            padding: 5px 10px 5px 25px;
+            text-decoration: none;
+            color: @white;
+            background-color: @light-black;
+            background-image: url('../images/panel-heading-collapsed-icon.png');
+            background-repeat: no-repeat;
+            background-position: 1px center;
+            margin-bottom: -14px;
+            display: block;
+            &.unflag-action {
+              background-image: url('../images/panel-heading-icon.png');
+              background-color: @black;
+            }
           }
         }
       }
