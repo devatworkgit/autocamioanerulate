@@ -554,6 +554,7 @@ function theme_cloud_zoom_image($variables) {
 
   if (!empty($variables['colorbox']) && module_exists('colorbox')) {
     $attributes['class'][] = 'colorbox';
+    $attributes['data-colorbox-gallery'] = 'gallery-all-cloud_zoom';
     $attributes['title'] = $item['title'];
   }
 
@@ -583,6 +584,7 @@ function theme_cloud_zoom_image_gallery($variables) {
   // Use colorbox?
   if (!empty($variables['colorbox']) && module_exists('colorbox')) {
     $classes[] = 'colorbox';
+    $attr = 'gallery-all-cloud_zoom';
   }
 
   foreach ($items as $delta => $item) {
@@ -601,6 +603,7 @@ function theme_cloud_zoom_image_gallery($variables) {
           'class' => $classes,
           'id' => $id,
           'rel' =>  $options_rel ,
+          'data-colorbox-gallery' => $attr,
         ),
       );
       $main_item = l($slide, $zoomed, $options);
@@ -610,7 +613,8 @@ function theme_cloud_zoom_image_gallery($variables) {
     $options = array(
       'html' => TRUE,
       'attributes' => array(
-        'class' => 'cloud-zoom-gallery',
+        'class' => 'cloud-zoom-gallery colorbox',
+        'data-colorbox-gallery' => "gallery-all-cloud_zoom",
         'rel' =>'useZoom: \'' . $id . '\',smallImage: \'' . $slide_url . '\'',
       ),
     );
