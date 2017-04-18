@@ -14,7 +14,9 @@ Drupal.behaviors.cloudZoom = {
           // But only if colorbox was initialized for this field.
           var $item = $(this);
           $item.parent().click(function() {
-            $item.colorbox(jQuery.extend({open: true}, settings.colorbox));
+            var bla = $('.cloud-zoom-gallery-thumbs a[href="' + $item.attr('href') +'"]');
+            console.log(bla);
+            bla.colorbox(jQuery.extend({open: true}, settings.colorbox));
             return false;
           });
         }
