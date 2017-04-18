@@ -1,0 +1,41 @@
+From c90c6d0aad9a96b50932224cb401cf80abbecdf1 Mon Sep 17 00:00:00 2001
+From: Ion <macaria.ion@gmail.com>
+Date: Fri, 14 Apr 2017 16:55:28 +0300
+Subject: [PATCH 1/2] cloud-zoom, colorbox gallery
+
+---
+ sites/all/modules/contrib/cloud_zoom/cloud_zoom.module | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/sites/all/modules/contrib/cloud_zoom/cloud_zoom.module b/sites/all/modules/contrib/cloud_zoom/cloud_zoom.module
+index 158ca03..c8e5e86 100644
+--- a/sites/all/modules/contrib/cloud_zoom/cloud_zoom.module
++++ b/sites/all/modules/contrib/cloud_zoom/cloud_zoom.module
+@@ -610,7 +613,8 @@ function theme_cloud_zoom_image_gallery($variables) {
+     $options = array(
+       'html' => TRUE,
+       'attributes' => array(
+-        'class' => 'cloud-zoom-gallery',
++        'class' => 'cloud-zoom-gallery colorbox',
++        'data-colorbox-gallery' => "gallery-all-cloud_zoom",
+         'rel' =>'useZoom: \'' . $id . '\',smallImage: \'' . $slide_url . '\'',
+       ),
+     );
+diff --git a/sites/all/modules/contrib/cloud_zoom/js/cloud_zoom.js b/sites/all/modules/contrib/cloud_zoom/js/cloud_zoom.js
+index fe1c7b2..07a7974 100644
+--- a/sites/all/modules/contrib/cloud_zoom/js/cloud_zoom.js
++++ b/sites/all/modules/contrib/cloud_zoom/js/cloud_zoom.js
+@@ -14,7 +14,9 @@ Drupal.behaviors.cloudZoom = {
+           // But only if colorbox was initialized for this field.
+           var $item = $(this);
+           $item.parent().click(function() {
+-            $item.colorbox(jQuery.extend({open: true}, settings.colorbox));
++            var bla = $('.cloud-zoom-gallery-thumbs a[href="' + $item.attr('href') +'"]');
++            console.log(bla);
++            bla.colorbox(jQuery.extend({open: true}, settings.colorbox));
+             return false;
+           });
+         }
+-- 
+2.11.1.windows.1
+
