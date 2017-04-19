@@ -31,7 +31,6 @@ index fe1c7b2..07a7974 100644
            $item.parent().click(function() {
 -            $item.colorbox(jQuery.extend({open: true}, settings.colorbox));
 +            var bla = $('.cloud-zoom-gallery-thumbs a[href="' + $item.attr('href') +'"]');
-+            console.log(bla);
 +            bla.colorbox(jQuery.extend({open: true}, settings.colorbox));
              return false;
            });

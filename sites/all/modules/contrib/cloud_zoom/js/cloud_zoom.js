@@ -15,7 +15,6 @@ Drupal.behaviors.cloudZoom = {
           var $item = $(this);
           $item.parent().click(function() {
             var bla = $('.cloud-zoom-gallery-thumbs a[href="' + $item.attr('href') +'"]');
-            console.log(bla);
             bla.colorbox(jQuery.extend({open: true}, settings.colorbox));
             return false;
           });
