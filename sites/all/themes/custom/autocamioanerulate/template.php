@@ -99,10 +99,10 @@ function autocamioanerulate_preprocess_page(&$variables) {
             <a title="Print PDF" class="print-node print-pdf" href="/printpdf/' . $variables['node']->nid . '"></a>
           </section>',
         ),
-        'print_block' => array(
+        /* 'print_block' => array(
           '#markup' => '<section id="block-print-block" class="block block-print-block pull-right clearfix">
             <a title="Print" class="print-node print" href="/print/' . $variables['node']->nid . '"></a>
-          </section>',
+          </section>', */
         ),
       );
     }
