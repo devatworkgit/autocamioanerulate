@@ -93,9 +93,39 @@
       <?php endif; ?>
       <hr class="print-hr" />
       <?php //if (!isset($node->type)): ?>
+        <?php print render($content['field_marca']); ?>
         <h1 class="print-title page-header"><?php print $print_title; ?></h1>
       <?php //endif; ?>
-      <div class="print-content"><?php print render($content); ?></div>
+      <div class="print-content print-content-pdf">
+        <div style="float: left; width: 263px;"><?php print render($content['field_images']); ?></div>
+        <?php hide($content['body']); ?>
+        <?php hide($content['field_telefon']); ?>
+        <?php hide($content['field_locatie_vehicul']); ?>
+        <?php hide($content['field_persoana_de_contact']); ?>
+        <?php hide($content['field_pozitie']); ?>
+        <?php hide($content['field_pret_autovehicul']); ?>
+        <?php hide($content['field_20_tva']); ?>
+        <?php hide($content['field_pret_total_cu_tva']); ?>
+        <div style="float: right; width: 370px;"><?php print render($content); ?></div> 
+        <div style="float: left; width: 263px;"><?php print render($content['body']); ?></div>
+        <div class="group-contact" style="float: right; width: 370px;">
+          <div class="top">
+            <?php print render($content['field_telefon']); ?>
+            <?php print render($content['field_locatie_vehicul']); ?>
+          </div>
+          <div class="bottom">
+            <?php print render($content['field_persoana_de_contact']); ?>
+            <?php print render($content['field_pozitie']); ?>
+          </div>
+        </div>
+        <div style="float: right; width: 370px;">
+          <div class="group-price-pdf">
+            <?php print render($content['field_pret_autovehicul']); ?>
+            <?php print render($content['field_20_tva']); ?>
+            <?php print render($content['field_pret_total_cu_tva']); ?>
+          </div>
+        </div>
+      </div>
       <div class="print-footer"><?php print theme('print_footer'); ?></div>
       <hr class="print-hr" />
       <?php if ($sourceurl_enabled): ?>

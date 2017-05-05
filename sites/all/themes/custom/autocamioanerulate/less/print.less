@@ -1,13 +1,75 @@
-.print-content {
+.print-content-pdf {
+  font-size: 12px;
   .field-name-field-images {
-    margin-bottom: 50px;
+    margin-bottom: 0;
     .field-item {
-      width: 600px;
       margin: 0 auto;
-      margin-bottom: 30px;
+      margin-bottom: 0;
     }
   }
   .field-name-body {
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    border-bottom: 0px;
+  }
+  .field-label-inline {
+    position: relative;
+    margin-bottom: 5px;
+    .field-label, .field-items {
+      display: block;
+      width: 153px;
+      float: left;
+    }
+  }
+  .group-contact {
+    box-shadow: none;
+    .top {
+      background-position: 10px;
+    }
+    .bottom {
+      div{
+        display: block;
+        width: 153px;
+        float: left;
+      }
+      .field-name-field-pozitie {
+        text-align: right;
+        float: right;
+      }
+    }
+  }
+  .group-price-pdf {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #eaeaea;
+    .field-name-field-pret-total-cu-tva {
+      .field-items {
+        color: @azure;
+        font-size: 18px;
+      }
+      .field-label {
+        color: #000000;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+    }
+    .field-label-inline {
+      .field-label {
+        font-weight: bold;
+      }
+      .field-items {
+        text-align: right;
+      }
+    }
+    .field-name-field-pret-autovehicul {
+      .field-items {
+        font-weight: bold;
+        color: @black;
+      }
+    }
+    .field-name-field-20-tva {
+      padding-bottom: 20px;
+      border-bottom: 1px solid @gray;
+    }
   }
 }
