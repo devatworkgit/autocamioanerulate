@@ -12455,8 +12455,8 @@ function SetBasePath($str='') {
 	$currentPath = str_replace("\\","/",$currentPath);
 	if ($currentPath == '/') { $currentPath = ''; }
 	if ($host) { 	// mPDF 6
-		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) { $currpath = 'https://' . $host . $currentPath .'/'; } 
-		else { $currpath = 'http://' . $host . $currentPath .'/'; }
+		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') { $currpath = 'https://' . $host . $currentPath .'/'; } 
+    else { $currpath = 'http://' . $host . $currentPath .'/'; }
 	}
 	else { $currpath = ''; }
 	$this->basepath = $currpath; 
