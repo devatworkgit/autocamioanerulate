@@ -102,8 +102,8 @@ function autocamioanerulate_preprocess_page(&$variables) {
         /* 'print_block' => array(
           '#markup' => '<section id="block-print-block" class="block block-print-block pull-right clearfix">
             <a title="Print" class="print-node print" href="/print/' . $variables['node']->nid . '"></a>
-          </section>', */
-        ),
+          </section>',
+        ), */
       );
     }
   }
