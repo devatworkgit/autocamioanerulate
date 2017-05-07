@@ -131,9 +131,12 @@
         </div>
         <div class="bottom">
           <?php 
-            print render($content['field_persoana_de_contact']);
-            print render($content['field_pozitie']);
+            #print render($content['field_persoana_de_contact']);
+            #print render($content['field_pozitie']);
           ?>
+          <div class="field field-name-field-persoana-de-contact field-type-text field-label-hidden">
+            <p> Vezi <a href="/contact">aici</a> persoanele de contact pentru aceast autocamion</p>
+          </div>
         </div>
       </div>
       <div class="group-price">
