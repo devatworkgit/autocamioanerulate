@@ -135,7 +135,7 @@
             #print render($content['field_pozitie']);
           ?>
           <div class="field field-name-field-persoana-de-contact field-type-text field-label-hidden">
-            <p> Vezi <a href="/contact">aici</a> persoanele de contact pentru aceast autocamion</p>
+            <p> Vezi <a href="/contact" style="color: black; font-weight: bold;">aici</a> persoanele de contact pentru aceast autocamion</p>
           </div>
         </div>
       </div>
