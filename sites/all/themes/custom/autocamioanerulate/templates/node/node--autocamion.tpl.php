@@ -115,8 +115,6 @@
         print render($content); 
       ?>
     </div>
-  </div>
-  <div class="row">
     <div class="col-sm-xs col-md-70">
       <?php print render($content['body']); ?>
       <?php print render($form); ?>
@@ -137,6 +135,8 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-xs-120 col-sm-offset-20 col-sm-80 col-md-offset-0 col-md-50 col-lg-offset-2 col-lg-46 col-mg-offset-5 col-mg-40">
       <div class="group-price">
         <?php
           print render($content['field_pret_autovehicul']);
