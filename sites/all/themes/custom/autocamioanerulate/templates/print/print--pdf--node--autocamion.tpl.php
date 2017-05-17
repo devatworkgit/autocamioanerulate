@@ -98,16 +98,6 @@
       <?php //endif; ?>
       <div class="print-content print-content-pdf">
         <div style="float: left; width: 263px;"><?php print render($content['field_images']); ?></div>
-        <?php hide($content['body']); ?>
-        <?php hide($content['field_telefon']); ?>
-        <?php hide($content['field_locatie_vehicul']); ?>
-        <?php hide($content['field_persoana_de_contact']); ?>
-        <?php hide($content['field_pozitie']); ?>
-        <?php hide($content['field_pret_autovehicul']); ?>
-        <?php hide($content['field_20_tva']); ?>
-        <?php hide($content['field_pret_total_cu_tva']); ?>
-        <div style="float: right; width: 370px;"><?php print render($content); ?></div> 
-        <div style="float: left; width: 263px;"><?php print render($content['body']); ?></div>
         <div class="group-contact" style="float: right; width: 370px;">
           <div class="top">
             <div class="field field-name-field-telefon field-type-phone field-label-hidden">
@@ -126,9 +116,6 @@
               #print render($content['field_persoana_de_contact']);
               #print render($content['field_pozitie']);
             ?>
-            <div class="field field-name-field-persoana-de-contact field-type-text field-label-hidden">
-              <p> Vezi <a href="/contact" style="color: black; font-weight: bold;">aici</a> persoanele de contact</p>
-            </div>
           </div>
         </div>
         <div style="float: right; width: 370px;">
@@ -160,6 +147,16 @@
             ?>
           </div>
         </div>
+        <div style="float: left; width: 263px;"><?php print render($content['body']); ?></div>
+        <?php hide($content['body']); ?>
+        <?php hide($content['field_telefon']); ?>
+        <?php hide($content['field_locatie_vehicul']); ?>
+        <?php hide($content['field_persoana_de_contact']); ?>
+        <?php hide($content['field_pozitie']); ?>
+        <?php hide($content['field_pret_autovehicul']); ?>
+        <?php hide($content['field_20_tva']); ?>
+        <?php hide($content['field_pret_total_cu_tva']); ?>
+        <div style="float: right; width: 370px;"><?php print render($content); ?></div>
       </div>
       <div class="print-footer"><?php print theme('print_footer'); ?></div>
       <hr class="print-hr" />
