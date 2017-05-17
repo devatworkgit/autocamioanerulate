@@ -122,8 +122,14 @@
     <div class="col-xs-120 col-sm-offset-20 col-sm-80 col-md-offset-0 col-md-50 col-lg-offset-2 col-lg-46 col-mg-offset-5 col-mg-40">
       <div class="group-contact">
         <div class="top">
+          <div class="field field-name-field-telefon field-type-phone field-label-hidden">
+            <div class="field-items">
+              <div class="field-item even">
+                +40726.386.194
+              </div>
+            </div>
+          </div>
           <?php
-            print render($content['field_telefon']);
             print render($content['field_locatie_vehicul']);
           ?>
         </div>
@@ -139,9 +145,29 @@
       </div>
       <div class="group-price">
         <?php
+          $tva = round(intval($content['field_pret_autovehicul']['#items'][0]['value'])/100 * 19);
+          $pret_cu_tva = intval($content['field_pret_autovehicul']['#items'][0]['value']) + $tva;
+          $formated_tva = number_format($tva, 0, '', '.');
+          $formated_pret_cu_tva = number_format($pret_cu_tva, 0, '', '.');
+        ?>  
+        <div class="field field-name-field-pret-total-cu-tva field-type-number-decimal field-label-inline clearfix">
+          <div class="field-label">Preţ autovehicul cu TVA:&nbsp;</div>
+          <div class="field-items">
+            <div class="field-item even">
+              <?php print $formated_pret_cu_tva; ?> €
+            </div>
+          </div>
+        </div>
+        <div class="field field-name-field-20-tva field-type-number-decimal field-label-inline clearfix">
+          <div class="field-label">19% TVA:&nbsp;</div>
+          <div class="field-items">
+            <div class="field-item even">
+              <?php print $formated_tva; ?> €
+            </div>
+          </div>
+        </div>
+        <?php  
           print render($content['field_pret_autovehicul']);
-          print render($content['field_20_tva']);
-          print render($content['field_pret_total_cu_tva']);
         ?>
       </div>
     </div>
