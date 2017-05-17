@@ -110,19 +110,54 @@
         <div style="float: left; width: 263px;"><?php print render($content['body']); ?></div>
         <div class="group-contact" style="float: right; width: 370px;">
           <div class="top">
-            <?php print render($content['field_telefon']); ?>
-            <?php print render($content['field_locatie_vehicul']); ?>
+            <div class="field field-name-field-telefon field-type-phone field-label-hidden">
+              <div class="field-items">
+                <div class="field-item even">
+                  +40726.386.194
+                </div>
+              </div>
+            </div>
+            <?php
+              print render($content['field_locatie_vehicul']);
+            ?>
           </div>
           <div class="bottom">
-            <?php print render($content['field_persoana_de_contact']); ?>
-            <?php print render($content['field_pozitie']); ?>
+            <?php 
+              #print render($content['field_persoana_de_contact']);
+              #print render($content['field_pozitie']);
+            ?>
+            <div class="field field-name-field-persoana-de-contact field-type-text field-label-hidden">
+              <p> Vezi <a href="/contact" style="color: black; font-weight: bold;">aici</a> persoanele de contact</p>
+            </div>
           </div>
         </div>
         <div style="float: right; width: 370px;">
           <div class="group-price-pdf">
-            <?php print render($content['field_pret_autovehicul']); ?>
-            <?php print render($content['field_20_tva']); ?>
-            <?php print render($content['field_pret_total_cu_tva']); ?>
+            <?php
+              $tva = round(intval($content['field_pret_autovehicul']['#items'][0]['value'])/100 * 19);
+              $pret_cu_tva = intval($content['field_pret_autovehicul']['#items'][0]['value']) + $tva;
+              $formated_tva = number_format($tva, 0, '', '.');
+              $formated_pret_cu_tva = number_format($pret_cu_tva, 0, '', '.');
+            ?>  
+            <div class="field field-name-field-pret-total-cu-tva field-type-number-decimal field-label-inline clearfix">
+              <div class="field-label">Preţ autovehicul cu TVA:&nbsp;</div>
+              <div class="field-items">
+                <div class="field-item even">
+                  <?php print $formated_pret_cu_tva; ?> €
+                </div>
+              </div>
+            </div>
+            <div class="field field-name-field-20-tva field-type-number-decimal field-label-inline clearfix">
+              <div class="field-label">19% TVA:&nbsp;</div>
+              <div class="field-items">
+                <div class="field-item even">
+                  <?php print $formated_tva; ?> €
+                </div>
+              </div>
+            </div>
+            <?php  
+              print render($content['field_pret_autovehicul']);
+            ?>
           </div>
         </div>
       </div>
