@@ -111,12 +111,6 @@
               print render($content['field_locatie_vehicul']);
             ?>
           </div>
-          <div class="bottom">
-            <?php 
-              #print render($content['field_persoana_de_contact']);
-              #print render($content['field_pozitie']);
-            ?>
-          </div>
         </div>
         <div style="float: right; width: 370px;">
           <div class="group-price-pdf">
@@ -156,7 +150,7 @@
         <?php hide($content['field_pret_autovehicul']); ?>
         <?php hide($content['field_20_tva']); ?>
         <?php hide($content['field_pret_total_cu_tva']); ?>
-        <div style="float: right; width: 370px;"><?php print render($content); ?></div>
+        <div style="float: right; width: 370px;"><p>&nbsp;</p><?php print render($content); ?></div>
       </div>
       <div class="print-footer"><?php print theme('print_footer'); ?></div>
       <hr class="print-hr" />
