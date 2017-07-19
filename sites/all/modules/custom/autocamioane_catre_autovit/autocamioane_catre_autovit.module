@@ -1,0 +1,72 @@
+<?php
+
+function autocamioane_catre_autovit_permission() {
+  return array(
+    'administer autovit post' => array(
+      'title' => t('Administer autovit & OLX post'),
+      'description' => t('Administer autovit & OLX post'),
+    ),
+  );
+}
+
+
+function autocamioane_catre_autovit_form_autocamion_node_form_alter(&$form, &$form_state, $form_id) {
+  if (user_access('administer autovit post')) {
+    $form['actions']['to_autovit'] = array(
+      '#type' => 'submit', 
+      '#value' => t('Post to Autovit'), 
+      '#weight' => 100, 
+      '#submit' => array('autocamion_node_form_post_to_autovit'),
+    );
+  }
+}
+
+function autocamion_node_form_post_to_autovit($form, &$form_state) {
+  /* $url = url('https://ssl.autovit.ro/api/open/oauth/token');
+  $headers = array(
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    'Accept' => 'application / json'
+  );
+  $data = http_build_query(
+    array (
+      "client_id" => "98",
+      "client_secret" => "d4ac03e9569cf465bb7ea3e6cd62387c",
+      "username" => "suzana.grandea@daimler.com",
+      "password" => "123456789",
+      "grant_type" => "password"
+    ), 
+    '', 
+    '&'
+  );
+  
+  // the actual sending of the data
+  $response = drupal_http_request($url, array($headers, 'POST', $data));
+  
+  dpm($response); */
+  
+  header("Access-Control-Allow-Origin: *");
+  // set up request for access token
+  $data = array();
+  $client_id     = '98';
+  $client_secret = 'd4ac03e9569cf465bb7ea3e6cd62387c';
+  $auth_string   = "{$client_id}:{$client_secret}";
+  $request       = "https://ssl.autovit.ro/api/open/oauth/token?grant_type=password";
+  $ch            = curl_init($request);
+  curl_setopt_array($ch, array(
+    CURLOPT_POST           => TRUE,
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_SSL_VERIFYPEER => FALSE,
+    CURLOPT_USERPWD        => $auth_string,
+    CURLOPT_HTTPHEADER     => array(
+      'Content-Type: application/x-www-form-urlencoded',
+      'Accept: application/json',
+      'Host: ssl.autovit.ro'
+    ),
+    CURLOPT_POSTFIELDS => $data
+  ));
+  $response = curl_exec($ch);
+  $responseData = json_decode($response, TRUE);
+  
+  dpm($responseData);
+
+}
