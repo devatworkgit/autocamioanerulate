@@ -4,7 +4,7 @@
  * Menu callback; Autocamion to autovit tab page.
  */
 function autocamioane_catre_autovit_node_tab_page($node) {
-  drupal_set_title(t('@title <em>to Autovit or OLX</em>', array('@title' => $node->title)), PASS_THROUGH);
+  drupal_set_title(t('@title <em>to Autovit</em>', array('@title' => $node->title)), PASS_THROUGH);
   return drupal_get_form('autocamioane_catre_autovit_form', $node);
 }
 
