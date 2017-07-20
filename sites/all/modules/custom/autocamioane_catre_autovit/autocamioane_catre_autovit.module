@@ -1,72 +1,295 @@
 <?php
 
+/**
+ * Implements hook_menu().
+ */
+function autocamioane_catre_autovit_menu() {
+
+  $items = array();
+
+  $items['admin/config/services/autocamioane_catre_autovit_oauth_settings'] = array(
+    'title' => t('Autovit Oauth Settings'),
+    'description' => t('The page where you have to put Autovit Oauth Settings'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('autocamioane_catre_autovit_admin'),
+    'access arguments' => array('administer autovit settings'),
+    'weight' => '-15',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
+  $items['node/%node/autocamioane_autovit'] = array(
+    'title' => t('Autocamioane to Autovit'),
+    'type' => MENU_LOCAL_TASK,
+    'access callback' => 'autocamioane_catre_autovit_node_tab_access',
+    'access arguments' => array(1),
+    'page callback' => 'autocamioane_catre_autovit_node_tab_page',
+    'page arguments' => array(1),
+    'context' => MENU_LOCAL_TASK,
+    'file' => 'includes/admin/autocamioane_catre_autovit.admin.inc',
+    'weight' => 2,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
 function autocamioane_catre_autovit_permission() {
   return array(
     'administer autovit post' => array(
       'title' => t('Administer autovit & OLX post'),
       'description' => t('Administer autovit & OLX post'),
     ),
-  );
-}
-
-
-function autocamioane_catre_autovit_form_autocamion_node_form_alter(&$form, &$form_state, $form_id) {
-  if (user_access('administer autovit post')) {
-    $form['actions']['to_autovit'] = array(
-      '#type' => 'submit', 
-      '#value' => t('Post to Autovit'), 
-      '#weight' => 100, 
-      '#submit' => array('autocamion_node_form_post_to_autovit'),
-    );
-  }
-}
-
-function autocamion_node_form_post_to_autovit($form, &$form_state) {
-  /* $url = url('https://ssl.autovit.ro/api/open/oauth/token');
-  $headers = array(
-    'Content-Type' => 'application/x-www-form-urlencoded',
-    'Accept' => 'application / json'
-  );
-  $data = http_build_query(
-    array (
-      "client_id" => "98",
-      "client_secret" => "d4ac03e9569cf465bb7ea3e6cd62387c",
-      "username" => "suzana.grandea@daimler.com",
-      "password" => "123456789",
-      "grant_type" => "password"
-    ), 
-    '', 
-    '&'
-  );
-  
-  // the actual sending of the data
-  $response = drupal_http_request($url, array($headers, 'POST', $data));
-  
-  dpm($response); */
-  
-  header("Access-Control-Allow-Origin: *");
-  // set up request for access token
-  $data = array();
-  $client_id     = '98';
-  $client_secret = 'd4ac03e9569cf465bb7ea3e6cd62387c';
-  $auth_string   = "{$client_id}:{$client_secret}";
-  $request       = "https://ssl.autovit.ro/api/open/oauth/token?grant_type=password";
-  $ch            = curl_init($request);
-  curl_setopt_array($ch, array(
-    CURLOPT_POST           => TRUE,
-    CURLOPT_RETURNTRANSFER => TRUE,
-    CURLOPT_SSL_VERIFYPEER => FALSE,
-    CURLOPT_USERPWD        => $auth_string,
-    CURLOPT_HTTPHEADER     => array(
-      'Content-Type: application/x-www-form-urlencoded',
-      'Accept: application/json',
-      'Host: ssl.autovit.ro'
+    'administer autovit settings' => array(
+      'title' => t('Administer autovit & OLX settings'),
+      'description' => t('Administer autovit & OLX settings'),
     ),
-    CURLOPT_POSTFIELDS => $data
+  );
+}
+
+/**
+ * Admin settings page.
+ */
+function autocamioane_catre_autovit_admin() {
+  $form = array();
+  
+  $form['autocamioane_catre_autovit_client_id'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Client ID'),
+    '#default_value' => variable_get('autocamioane_catre_autovit_client_id', ''),
+    '#element_validate' => array('element_validate_integer_positive'),
+    '#required' => TRUE,
+  );
+  
+  $form['autocamioane_catre_autovit_client_secret'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Client Secret'),
+    '#default_value' => variable_get('autocamioane_catre_autovit_client_secret', ''),
+    '#required' => TRUE,
+  );
+  
+  $form['autocamioane_catre_autovit_username'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Username'),
+    '#default_value' => variable_get('autocamioane_catre_autovit_username', ''),
+    '#required' => TRUE,
+  );
+  
+  $form['autocamioane_catre_autovit_password'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Password'),
+    '#default_value' => variable_get('autocamioane_catre_autovit_password', ''),
+    '#required' => TRUE,
+  );
+
+  return system_settings_form($form);
+}
+
+/**
+ * Access callback.
+ */
+function autocamioane_catre_autovit_node_tab_access($node) {
+  return ($node->type == 'autocamion') && user_access('administer autovit post');
+}
+
+function autocamioane_catre_autovit_get_token($client_id, $client_secret, $username, $password) {
+  
+  $request       = "https://ssl.autovit.ro/api/open/oauth/token";
+  $ch            = curl_init($request);
+  
+  $data = 'client_id=' . urlencode($client_id) . '&' .
+    'client_secret=' . urlencode($client_secret) . '&' .
+    'username=' . urlencode($username) . '&' .
+    'password=' . urlencode($password) . '&' .
+    'grant_type=password';
+  
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+  curl_setopt($ch, CURLOPT_FAILONERROR, false);  
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
+
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/x-www-form-urlencoded',
+    'Accept: application/json'
   ));
+  
+  
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 
+  
   $response = curl_exec($ch);
   $responseData = json_decode($response, TRUE);
   
-  dpm($responseData);
+  return $responseData;
+}
 
+function autocamioane_catre_autovit_get_categories($token_parameters, $node) {
+  
+  $request       = "https://ssl.autovit.ro/api/open/account/adverts";
+  $ch            = curl_init($request);
+  
+  $data = autocamioane_catre_autovit_create_json($node, $token_parameters['access_token']);
+  
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+  curl_setopt($ch, CURLOPT_FAILONERROR, false);  
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
+
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Accept: application/json',
+    'Authorization:' . 'Bearer' . ' ' . $token_parameters['access_token']
+  ));
+  
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  
+  $response = curl_exec($ch);
+  $responseData = json_decode($response, TRUE);
+  
+  return $responseData;
+}
+
+function autocamioane_catre_autovit_create_json($node, $token) {
+  if (isset($node->title)) {
+    $json_array["title"] = $node->title;
+  }
+  if (isset($node->body['und'][0]['value'])) {
+    $json_array["description"] = $node->body['und'][0]['value'];
+  }
+  if (isset($node->field_categoria['und'][0]['tid'])) {
+    $id = autocamioane_catre_autovit_get_autovit_id($node->field_categoria['und'][0]['tid']);
+    if($id) {
+      $json_array["category_id"] = $id;
+    }
+  }
+  if (isset($node->field_persoana_de_contact['und'][0]['value'])) {
+    $json_array["contact"]["person"] = $node->field_persoana_de_contact['und'][0]['value'];
+  } else {
+    $json_array["contact"]["person"] = ' ';
+  }
+  if (isset($node->field_telefon['und'][0]['value'])) {
+    $json_array["contact"]["phone_numbers"] = $node->field_telefon['und'][0]['value'];
+  }
+  if (isset($node->field_marca['und'][0]['tid'])) {
+    $id = autocamioane_catre_autovit_get_autovit_id($node->field_marca['und'][0]['tid']);
+    if($id) {
+      $json_array["params"]["make"] = $id;
+    }
+  }
+  if (isset($node->title)) {
+    $json_array["params"]["model"] = $node->title;
+  }
+  if (isset($node->field_prima_inmatriculare['und'][0]['value'])) {
+    $timestamp = strtotime($node->field_prima_inmatriculare['und'][0]['value']);
+    $json_array["params"]["year"] = date('Y', $timestamp);
+  }
+  if (isset($node->field_tara_primei_inmatriculari['und'][0]['country'])) {
+    $json_array["params"]["country_origin"] = $node->field_tara_primei_inmatriculari['und'][0]['country'];
+  } else {
+    $json_array["params"]["country_origin"] = "ro";
+  }
+  if (isset($node->field_rulaj_km['und'][0]['value'])) {
+    $json_array["params"]["mileage"] = $node->field_rulaj_km['und'][0]['value'];
+  }
+  if (isset($node->field_combustibil['und'][0]['tid'])) {
+    $id = autocamioane_catre_autovit_get_autovit_id($node->field_combustibil['und'][0]['tid']);
+    if($id) {
+      $json_array["params"]["fuel_type"] = $id;
+    }
+  }
+  if (isset($node->field_serie_sasiu['und'][0]['value'])) {
+    $json_array["params"]["vin"] = $node->field_serie_sasiu['und'][0]['value'];
+  }
+  if (isset($node->field_putere_maxim_kw['und'][0]['value'])) {
+    $json_array["params"]["engine_power"] = $node->field_putere_maxim_kw['und'][0]['value'];
+  }
+  if (isset($node->field_norma_de_poluare['und'][0]['tid'])) {
+    $id = autocamioane_catre_autovit_get_autovit_id($node->field_norma_de_poluare['und'][0]['tid']);
+    if($id) {
+      $json_array["params"]["pollution_standard"] = $id;
+    }
+  }
+  if (isset($node->field_masa_totala_max_aut_kg['und'][0]['value'])) {
+    $json_array["params"]["max_weight"] = $node->field_masa_totala_max_aut_kg['und'][0]['value'];
+  }
+  if (isset($node->field_cilindreea_totala_cm_c['und'][0]['value'])) {
+    $json_array["params"]["engine_capacity"] = $node->field_cilindreea_totala_cm_c['und'][0]['value'];
+  }
+  if (isset($node->field_formula_rotilor['und'][0]['tid'])) {
+    $id = autocamioane_catre_autovit_get_autovit_id($node->field_formula_rotilor['und'][0]['tid']);
+    if($id) {
+      $json_array["params"]["wheel_axis"] = $id;
+    }
+  }
+  if (isset($node->field_transmisia['und'][0]['tid'])) {
+    $id = autocamioane_catre_autovit_get_autovit_id($node->field_transmisia['und'][0]['tid']);
+    if($id) {
+      $json_array["params"]["gearbox"] = $id;
+    }
+  }
+  if (isset($node->field_culoarea_cabinei['und'][0]['tid'])) {
+    $id = autocamioane_catre_autovit_get_autovit_id($node->field_culoarea_cabinei['und'][0]['tid']);
+    if($id) {
+      $json_array["params"]["color"] = $id;
+    }
+  }
+  if (isset($node->field_tip_cabin_['und'][0]['tid'])) {
+    $id = autocamioane_catre_autovit_get_autovit_id($node->field_tip_cabin_['und'][0]['tid']);
+    if($id) {
+      $json_array["params"]["sleeping-compartment"] = $id;
+    }
+  }
+  $json_array["params"]["vat"] = 1;
+  $json_array["params"]["financial_option"] = 1;
+  if (isset($node->field_pret_autovehicul['und'][0]['value'])) {
+    $json_array["params"]["price"]["1"] = $node->field_pret_autovehicul['und'][0]['value'];
+  }
+  $json_array["params"]["price"]["currency"] = "EUR";
+  $json_array["params"]["price"]["gross_net"] = "gross";
+  if (isset($node->field_images[LANGUAGE_NONE][0]['uri'])) {
+    $json_array["image_collection_id"] = autocamioane_catre_autovit_create_image_collection($node, $token);
+  }
+  $json_array["external_id"] = $node->nid;
+  $json_array["partner_offer_url"] = "http://autocamioanerulate.ro/node/" . $node->nid;
+  $json_array["advertiser_type"] = "private";
+  
+  return json_encode($json_array);
+}
+
+function autocamioane_catre_autovit_get_autovit_id($tid) {
+  $term = taxonomy_term_load($tid);
+  if(isset($term->field_autovit_id['und'][0]['value'])) {
+    return $term->field_autovit_id['und'][0]['value'];
+  } else {
+    return 0;
+  }
+}
+
+function autocamioane_catre_autovit_create_image_collection($node, $token) {
+  foreach($node->field_images[LANGUAGE_NONE] as $key => $image) {
+    $images[$key + 1] = file_create_url($image['uri']);
+  };
+  
+  $images = json_encode($images);
+  
+  $request       = "https://ssl.autovit.ro/api/open/imageCollections";
+  $ch            = curl_init($request);
+  
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+  curl_setopt($ch, CURLOPT_FAILONERROR, false);  
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
+
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Accept: application/json',
+    'Authorization:' . 'Bearer' . ' ' . $token
+  ));
+  
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $images);
+  
+  $response = curl_exec($ch);
+  $responseData = json_decode($response, TRUE);
+  
+  return $responseData["id"];
 }
