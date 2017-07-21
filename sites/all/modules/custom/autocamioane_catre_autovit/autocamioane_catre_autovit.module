@@ -245,7 +245,7 @@ function autocamioane_catre_autovit_create_json($node, $token) {
     $json_array["params"]["price"]["1"] = $node->field_pret_autovehicul['und'][0]['value'];
   }
   $json_array["params"]["price"]["currency"] = "EUR";
-  $json_array["params"]["price"]["gross_net"] = "gross";
+  $json_array["params"]["price"]["gross_net"] = "net";
   if (isset($node->field_images[LANGUAGE_NONE][0]['uri'])) {
     $json_array["image_collection_id"] = autocamioane_catre_autovit_create_image_collection($node, $token);
   }
