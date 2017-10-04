@@ -123,9 +123,13 @@ function autocamioane_catre_autovit_get_token($client_id, $client_secret, $usern
   return $responseData;
 }
 
-function autocamioane_catre_autovit_get_categories($token_parameters, $node) {
+function autocamioane_catre_autovit_get_categories($token_parameters, $node, $id = NULL) {
   
-  $request       = "https://ssl.autovit.ro/api/open/account/adverts";
+  if (isset($id) && !empty($id)) {
+    $request       = "https://ssl.autovit.ro/api/open/account/adverts/" . $id;
+  } else {
+    $request       = "https://ssl.autovit.ro/api/open/account/adverts";
+  }  
   $ch            = curl_init($request);
   
   $data = autocamioane_catre_autovit_create_json($node, $token_parameters['access_token']);
@@ -133,7 +137,11 @@ function autocamioane_catre_autovit_get_categories($token_parameters, $node) {
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
   curl_setopt($ch, CURLOPT_FAILONERROR, false);  
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
+  if (isset($id) && !empty($id)) {
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT'); 
+  } else {
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
+  }
 
   curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',
@@ -292,4 +300,73 @@ function autocamioane_catre_autovit_create_image_collection($node, $token) {
   $responseData = json_decode($response, TRUE);
   
   return $responseData["id"];
+}
+
+function autocamioane_catre_autovit_node_delete($node) {
+  $client_id     = variable_get('autocamioane_catre_autovit_client_id', '');
+  $client_secret = variable_get('autocamioane_catre_autovit_client_secret', '');
+  $username      = variable_get('autocamioane_catre_autovit_username', '');
+  $password      = variable_get('autocamioane_catre_autovit_password', '');
+  
+  $varible_name = "autovit_post_id_node_" . $node->nid;
+  $id = variable_get($varible_name, '');
+  
+  $response = autocamioane_catre_autovit_get_token($client_id, $client_secret, $username, $password);
+  $post = autocamioane_catre_autovit_get_post($response, $id);
+  
+  if(isset($post['id']) && $post['status'] != "removed_by_user") {
+    $request       = "https://ssl.autovit.ro/api/open/account/adverts/" . $post['id'] . "/deactivate";
+    $ch            = curl_init($request);
+    
+    $json['reason']['id'] = 1;
+    $json['reason']['description'] = "false";
+    $data = json_encode($json);
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+    curl_setopt($ch, CURLOPT_FAILONERROR, false);  
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST'); 
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Accept: application/json',
+      'Authorization:' . 'Bearer' . ' ' . $response['access_token']
+    ));
+    
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    
+    $response = curl_exec($ch);
+    $responseData = json_decode($response, TRUE);
+
+    if (isset($responseData['error'])) {
+      drupal_set_message($post['error']['message'], 'error');
+    } else {
+      drupal_set_message(t("Successfully deactivated from autovit"), 'status');
+      
+      variable_del($varible_name);
+    }
+  }
+}
+
+function autocamioane_catre_autovit_get_post($token_parameters, $post_id) {
+  if (isset($post_id) && !empty($post_id)){
+    $request       = "https://ssl.autovit.ro/api/open/account/adverts/" . $post_id . "/";
+    $ch            = curl_init($request);
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+    curl_setopt($ch, CURLOPT_FAILONERROR, false);  
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET'); 
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/json',
+      'Accept: application/json',
+      'Authorization:' . 'Bearer' . ' ' . $token_parameters['access_token']
+    ));
+    
+    $response = curl_exec($ch);
+    $responseData = json_decode($response, TRUE);
+
+    return $responseData;
+  }
 }
